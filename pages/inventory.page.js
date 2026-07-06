@@ -9,13 +9,16 @@ export class InventoryPage {
     async visit() {
         await this.page.goto('inventory.html', { waitUntil: 'load' });
         const inventoryContainer = this.page.locator('div[data-test="inventory-container"]');
-
         await expect(inventoryContainer).toBeVisible();
+    }
+
+    async clickItemTitleLink(title) {
+        const itemContainer = await this.getItemContainerByTitle(title);
+        await itemContainer.locator('a[data-test$="title-link"]').click();
     }
 
     async verifyEmptyCart() {
         const shoppingCartBadge = this.page.locator('a[data-test="shopping-cart-link"] span[data-test="shopping-cart-badge"]');
-
         await expect(shoppingCartBadge).toBeHidden()
     }
 
@@ -35,14 +38,12 @@ export class InventoryPage {
     }
 
     async verifyAlphabeticalSortOption() {
-
         const namesArray = await this.getInventoryItemsNameArray();
         const sortedTexts = [...namesArray].sort((a, b) => a.localeCompare(b));
         expect(namesArray).toEqual(sortedTexts);
     }
 
     async verifyReverseAlphabeticalSortOption() {
-
         const namesArray = await this.getInventoryItemsNameArray();
         const sortedTexts = [...namesArray].sort((a, b) => b.localeCompare(a));
         expect(namesArray).toEqual(sortedTexts);
@@ -56,14 +57,12 @@ export class InventoryPage {
     async verifyPriceSort() {
         const pricesArray = await this.getInventoryItemsPriceArray();
         const sortedPrices = [...pricesArray].sort((a, b) => parseFloat(a.replace('$', '')) - parseFloat(b.replace('$', '')));
-
         expect(pricesArray).toEqual(sortedPrices);
     }
 
     async verifyReversePriceSort() {
         const pricesArray = await this.getInventoryItemsPriceArray();
         const sortedPrices = [...pricesArray].sort((a, b) => parseFloat(b.replace('$', '')) - parseFloat(a.replace('$', '')));
-
         expect(pricesArray).toEqual(sortedPrices);
     }
 

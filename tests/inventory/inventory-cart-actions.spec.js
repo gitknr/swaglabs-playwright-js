@@ -1,5 +1,6 @@
 import { test } from '../../utils/testHooks.js';
 import {InventoryPage} from '../../pages/index.js';
+import {HeaderComponent} from '../../shared-components/index.js';
 
 /**
  * Verifies that the Inventory page cart behaviors work as expected
@@ -14,7 +15,8 @@ test.describe('Check Inventory Cart Actions', { tag: '@inventory' }, () => {
         await inventoryPage.visit();
         await inventoryPage.verifyEmptyCart();
         await inventoryPage.addItemToCartByTitle('Sauce Labs Backpack');
-        await inventoryPage.verifyShoppingCartItemCount(1);
+        const headerComponent = new HeaderComponent(page);
+        await headerComponent.verifyShoppingCartItemCount(1);
         await inventoryPage.verifyRemoveItemButtonExists('Sauce Labs Backpack');
     });
 
@@ -24,22 +26,24 @@ test.describe('Check Inventory Cart Actions', { tag: '@inventory' }, () => {
         await inventoryPage.visit();
         await inventoryPage.verifyEmptyCart();
         await inventoryPage.addItemToCartByTitle('Sauce Labs Fleece Jacket');
-        await inventoryPage.verifyShoppingCartItemCount(1);
+        const headerComponent = new HeaderComponent(page);
+        await headerComponent.verifyShoppingCartItemCount(1);
         await inventoryPage.removeItemFromCartByTitle('Sauce Labs Fleece Jacket');
-        await inventoryPage.verifyEmptyCart();
+        await headerComponent.verifyEmptyCart();
         await inventoryPage.verifyRemoveItemButtonDoesNotExist('Sauce Labs Fleece Jacket');
     });
 
     test('Add multiple items to cart', async ({page}) => {
         const inventoryPage = new InventoryPage(page);
         await inventoryPage.visit();
-        await inventoryPage.verifyEmptyCart();
+        const headerComponent = new HeaderComponent(page);
+        await headerComponent.verifyEmptyCart();
         await inventoryPage.addItemToCartByTitle('Sauce Labs Backpack');
-        await inventoryPage.verifyShoppingCartItemCount(1);
+        await headerComponent.verifyShoppingCartItemCount(1);
         await inventoryPage.addItemToCartByTitle('Sauce Labs Onesie');
-        await inventoryPage.verifyShoppingCartItemCount(2);
+        await headerComponent.verifyShoppingCartItemCount(2);
         await inventoryPage.addItemToCartByTitle('Sauce Labs Bolt T-Shirt');
-        await inventoryPage.verifyShoppingCartItemCount(3);
+        await headerComponent.verifyShoppingCartItemCount(3);
     });
 
 });

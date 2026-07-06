@@ -1,5 +1,6 @@
 import { test } from '../../utils/testHooks.js';
-import {InventoryPage} from '../../pages/index.js';
+import {InventoryPage, ItemPage} from '../../pages/index.js';
+import {HeaderComponent} from '../../shared-components/index.js';
 
 /**
  * Verifies that the Item Details display correctly
@@ -14,6 +15,17 @@ test.describe('Check Item Details', { tag: '@items' }, () => {
         await inventoryPage.visit();
         await inventoryPage.verifyItemDetailByTitle('Sauce Labs Backpack', 'desc', 'carry.allTheThings() with the sleek, streamlined Sly Pack that melds uncompromising style with unequaled laptop and tablet protection.');
         await inventoryPage.verifyItemDetailByTitle('Sauce Labs Backpack', 'price', '$29.99');
+    });
+
+    test('Verify Item Details on Item Page', async ({page}) => {
+        const inventoryPage = new InventoryPage(page);
+        await inventoryPage.visit();
+        await inventoryPage.clickItemTitleLink('Sauce Labs Backpack');
+        const itemPage = new ItemPage(page);
+        await itemPage.verifyBackToProductsLink();
+        await itemPage.verifyItemDetail('name', 'Sauce Labs Backpack');
+        await itemPage.verifyItemDetail('desc', 'carry.allTheThings() with the sleek, streamlined Sly Pack that melds uncompromising style with unequaled laptop and tablet protection.');
+        await itemPage.verifyItemDetail('price', '$29.99');
     });
 
 });

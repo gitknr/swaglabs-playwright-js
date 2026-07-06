@@ -1,5 +1,4 @@
 import { test as setup, expect } from '@playwright/test';
-import * as dotenv from 'dotenv';
 
 // Define where the authenticated browser state will be saved
 const authFile = 'playwright/.auth/user.json';

@@ -1,4 +1,4 @@
-import { test, expect } from '../../utils/testHooks.js';
+import { test } from '../../utils/testHooks.js';
 import {LoginPage} from '../../pages/index.js';
 
 test.describe('Check User Login Functionality', { tag: '@user-login' }, () => {

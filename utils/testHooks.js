@@ -2,6 +2,7 @@ import { test as baseTest } from '@playwright/test';
 
 export const test = baseTest.extend({
     // Define an automatic fixture (auto: true)
+    // eslint-disable-next-line no-empty-pattern 
     logTitleFixture: [async ({}, use, testInfo) => {
         // This runs BEFORE the test
         console.log(`🚀 Starting test: ${testInfo.title}`);

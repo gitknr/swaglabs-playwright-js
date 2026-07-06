@@ -1,4 +1,4 @@
-import { test, expect } from '../../utils/testHooks.js';
+import { test } from '../../utils/testHooks.js';
 import {InventoryPage} from '../../pages/index.js';
 
 /**

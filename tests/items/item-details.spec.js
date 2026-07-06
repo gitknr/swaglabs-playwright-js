@@ -1,5 +1,5 @@
-import { test, expect } from '../../utils/testHooks.js';
-import {InventoryPage, ItemPage} from '../../pages/index.js';
+import { test } from '../../utils/testHooks.js';
+import {InventoryPage} from '../../pages/index.js';
 
 /**
  * Verifies that the Item Details display correctly

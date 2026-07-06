@@ -9,7 +9,7 @@ import {InventoryPage} from '../../pages/index.js';
  */
 test.describe('Check Inventory Cart Actions', { tag: '@inventory' }, () => {
 
-    test('Add items to cart', async ({page}) => {
+    test('Add item to cart', async ({page}) => {
         const inventoryPage = new InventoryPage(page);
         await inventoryPage.visit();
         await inventoryPage.verifyEmptyCart();
@@ -18,7 +18,7 @@ test.describe('Check Inventory Cart Actions', { tag: '@inventory' }, () => {
         await inventoryPage.verifyRemoveItemButtonExists('Sauce Labs Backpack');
     });
 
-    test('Remove items from cart', async ({page}) => {
+    test('Remove item from cart', async ({page}) => {
         // Add items to cart first - sauce labs does not expose Add items network call, so Add items must be performed through UI
         const inventoryPage = new InventoryPage(page);
         await inventoryPage.visit();

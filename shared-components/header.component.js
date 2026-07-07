@@ -15,4 +15,9 @@ export class HeaderComponent {
         const cartItemCount = await this.page.locator('span[data-test="shopping-cart-badge"]').textContent();
         expect(cartItemCount).toBe(itemCount.toString());
     }
+
+    async clickShoppingCartLink() {
+        const shoppingCartLink = this.page.locator('a[data-test="shopping-cart-link"]');
+        await shoppingCartLink.click();
+    }
 }

@@ -1,6 +1,5 @@
 import { test } from '../../utils/testHooks.js';
 import {InventoryPage, ItemPage} from '../../pages/index.js';
-import {HeaderComponent} from '../../shared-components/index.js';
 
 /**
  * Verifies that the Item Details display correctly

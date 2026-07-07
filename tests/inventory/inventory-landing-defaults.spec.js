@@ -1,5 +1,6 @@
 import { test } from '../../utils/testHooks.js';
 import {InventoryPage} from '../../pages/index.js';
+import {HeaderComponent} from '../../shared-components/index.js';
 
 /**
  * Verifies that the Inventory landing page loads correctly
@@ -13,7 +14,8 @@ test.describe('Check Inventory Page Defaults', { tag: '@inventory' }, () => {
     test('Verify default state of Inventory landing page', async ({page}) => {
         const inventoryPage = new InventoryPage(page);
         await inventoryPage.visit();
-        await inventoryPage.verifyEmptyCart();
+        const headerComponent = new HeaderComponent(page);
+        await headerComponent.verifyEmptyCart();
         await inventoryPage.verifyActiveSortOption('Name (A to Z)');
     });
 

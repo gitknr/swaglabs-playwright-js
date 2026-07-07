@@ -12,14 +12,15 @@ export class InventoryPage {
         await expect(inventoryContainer).toBeVisible();
     }
 
+    async verifyProductsTitleExists() {
+        const productsTitle = this.page.locator('span[data-test="title"]');
+        await expect(productsTitle).toBeVisible();
+        await expect(productsTitle).toContainText('Products');
+    }
+
     async clickItemTitleLink(title) {
         const itemContainer = await this.getItemContainerByTitle(title);
         await itemContainer.locator('a[data-test$="title-link"]').click();
-    }
-
-    async verifyEmptyCart() {
-        const shoppingCartBadge = this.page.locator('a[data-test="shopping-cart-link"] span[data-test="shopping-cart-badge"]');
-        await expect(shoppingCartBadge).toBeHidden()
     }
 
     async verifyActiveSortOption(sortOption) {
@@ -74,11 +75,6 @@ export class InventoryPage {
     async addItemToCartByTitle(title) {
         const itemContainer = await this.getItemContainerByTitle(title);
         await itemContainer.locator('button[data-test^="add-to-cart-"]').click();
-    }
-
-    async verifyShoppingCartItemCount(itemCount) {
-        const cartItemCount = await this.page.locator('span[data-test="shopping-cart-badge"]').textContent();
-        expect(cartItemCount).toBe(itemCount.toString());
     }
 
     async verifyRemoveItemButtonExists(title) {

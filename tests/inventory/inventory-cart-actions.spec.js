@@ -13,9 +13,9 @@ test.describe('Check Inventory Cart Actions', { tag: '@inventory' }, () => {
     test('Add item to cart', async ({page}) => {
         const inventoryPage = new InventoryPage(page);
         await inventoryPage.visit();
-        await inventoryPage.verifyEmptyCart();
-        await inventoryPage.addItemToCartByTitle('Sauce Labs Backpack');
         const headerComponent = new HeaderComponent(page);
+        await headerComponent.verifyEmptyCart();
+        await inventoryPage.addItemToCartByTitle('Sauce Labs Backpack');
         await headerComponent.verifyShoppingCartItemCount(1);
         await inventoryPage.verifyRemoveItemButtonExists('Sauce Labs Backpack');
     });
@@ -24,9 +24,9 @@ test.describe('Check Inventory Cart Actions', { tag: '@inventory' }, () => {
         // Add items to cart first - sauce labs does not expose Add items network call, so Add items must be performed through UI
         const inventoryPage = new InventoryPage(page);
         await inventoryPage.visit();
-        await inventoryPage.verifyEmptyCart();
-        await inventoryPage.addItemToCartByTitle('Sauce Labs Fleece Jacket');
         const headerComponent = new HeaderComponent(page);
+        await headerComponent.verifyEmptyCart();
+        await inventoryPage.addItemToCartByTitle('Sauce Labs Fleece Jacket');
         await headerComponent.verifyShoppingCartItemCount(1);
         await inventoryPage.removeItemFromCartByTitle('Sauce Labs Fleece Jacket');
         await headerComponent.verifyEmptyCart();

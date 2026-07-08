@@ -6,10 +6,6 @@ export class CheckoutUserDetailsPage {
         this.page = page;
     }
 
-    async visit() {
-        await this.page.goto('checkout-step-one.html', { waitUntil: 'load' });
-    }
-
     async verifyCheckoutTitleExists() {
         const checkoutTitle = this.page.locator('span[data-test="title"]');
         await expect(checkoutTitle).toBeVisible();

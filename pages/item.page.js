@@ -6,12 +6,6 @@ export class ItemPage {
         this.page = page;
     }
 
-    async visit(itemId) {
-        await this.page.goto(`inventory-item.html?id=${itemId}`, {waitUntil: 'load'});
-        const appLogo = this.page.locator('div[class="app_logo"]');
-        await expect(appLogo).toBeVisible();
-    }
-
     async verifyBackToProductsLink() {
         const backToProductsLink = this.page.locator('button[data-test="back-to-products"]');
         await expect(backToProductsLink).toBeVisible();

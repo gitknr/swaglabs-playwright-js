@@ -14,8 +14,12 @@ test.describe('Check Inventory Page Defaults', { tag: '@inventory' }, () => {
     test('Verify default state of Inventory landing page', async ({page}) => {
         const inventoryPage = new InventoryPage(page);
         await inventoryPage.visit();
+
+        // cart is empty by default
         const headerComponent = new HeaderComponent(page);
         await headerComponent.verifyEmptyCart();
+
+        // default sort option is Name (A to Z)
         await inventoryPage.verifyActiveSortOption('Name (A to Z)');
     });
 

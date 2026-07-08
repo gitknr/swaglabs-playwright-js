@@ -13,10 +13,14 @@ test.describe('Check Cart Page Navigation Controls Work As Intended', { tag: '@c
     test('Verify Continue Shopping Button', async ({page}) => {
         const inventoryPage = new InventoryPage(page);
         await inventoryPage.visit();
+
+        // click on cart link to navigate to cart page
         const headerComponent = new HeaderComponent(page);
         await headerComponent.clickShoppingCartLink();
+
         const cartPage = new CartPage(page);
         await cartPage.clickContinueShoppingButton();
+
         // user lands back on inventory page
         await inventoryPage.verifyProductsTitleExists();
     })
@@ -24,12 +28,17 @@ test.describe('Check Cart Page Navigation Controls Work As Intended', { tag: '@c
     test('Verify Checkout Button', async ({page}) => {
         const inventoryPage = new InventoryPage(page);
         await inventoryPage.visit();
+
+        // click on cart link to navigate to cart page
         const headerComponent = new HeaderComponent(page);
         await headerComponent.clickShoppingCartLink();
+
         const cartPage = new CartPage(page);
         await cartPage.clickCheckoutButton();
-        const checkoutStepOnePage = new CheckoutUserDetailsPage(page);
-        await checkoutStepOnePage.verifyCheckoutTitleExists();
+
+        // user lands on checkout user details page
+        const checkoutUserDetailsPage = new CheckoutUserDetailsPage(page);
+        await checkoutUserDetailsPage.verifyCheckoutTitleExists();
     })
 
 });

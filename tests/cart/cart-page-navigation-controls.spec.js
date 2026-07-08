@@ -1,5 +1,5 @@
 import { test } from '../../utils/testHooks.js';
-import {InventoryPage, CartPage, CheckoutStepOnePage} from '../../pages/index.js';
+import {InventoryPage, CartPage, CheckoutUserDetailsPage} from '../../pages/index.js';
 import {HeaderComponent} from '../../shared-components/index.js';
 
 /**
@@ -28,7 +28,7 @@ test.describe('Check Cart Page Navigation Controls Work As Intended', { tag: '@c
         await headerComponent.clickShoppingCartLink();
         const cartPage = new CartPage(page);
         await cartPage.clickCheckoutButton();
-        const checkoutStepOnePage = new CheckoutStepOnePage(page);
+        const checkoutStepOnePage = new CheckoutUserDetailsPage(page);
         await checkoutStepOnePage.verifyCheckoutTitleExists();
     })
 

@@ -61,6 +61,24 @@ Open the HTML report after a run:
 npx playwright show-report
 ```
 
+## CI
+
+GitHub Actions runs the Playwright suite from [`.github/workflows/playwright.yml`](.github/workflows/playwright.yml) on `push` and `pull_request` events for the `main` and `master` branches.
+
+The workflow expects these repository-level values to be set in GitHub:
+
+- `vars.BASE_URL`
+- `secrets.TEST_USERNAME`
+- `secrets.TEST_PASSWORD`
+
+At runtime, the workflow passes those values into the job environment so Playwright and the setup test can read them. It then:
+
+1. checks out the repository
+2. installs Node dependencies with `npm ci`
+3. installs the Chromium browser and OS dependencies for Playwright
+4. runs `npx playwright test`
+5. uploads `playwright-report/` as a build artifact
+
 ## Configuration notes
 
 - `playwright.config.js` reads `.env` with `dotenv`.
